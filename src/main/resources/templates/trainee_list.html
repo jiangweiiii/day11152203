@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../vuejs/vuejs-2.5.16.js/"></script>
+    <script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+<body>
+    <div id="listdiv">
+        <table border="1" width="1000px">
+                    学员名字:
+                    <input  v-model="lnTrainee.tlnname">
+
+            按科目查询:<select v-model="lnTrainee.sLnid">
+            <option :value="-1">--请选择--</option>
+            <option :value="1">科目一</option>
+            <option :value="2">科目二</option>
+            <option :value="3">科目三</option>
+            <option :value="4">科目四</option>
+        </select>
+            <input type="button" value="搜索" @click="findAll()">
+            <tr>
+                <th>学员编号</th>
+                <th>学员姓名</th>
+                <th>学员性别</th>
+                <th>学员年龄</th>
+                <th>报名日期</th>
+                <th>在学科目</th>
+                <th>教练编号</th>
+                <th>教练姓名</th>
+                <th>教练生日</th>
+                <th>教练性别</th>
+            </tr>
+            <tr v-for="t in list">
+                <td>{{t.tlnid}}</td>
+                <td>{{t.tlnname}}</td>
+                <td>{{t.tlnsex}}</td>
+                <td>{{t.tlnage}}</td>
+                <td>{{t.tlnindate}}</td>
+                <td>{{t.subject.slnname}}</td>
+                <td>{{t.lnCoach.clnid}}</td>
+                <td>{{t.lnCoach.clnname}}</td>
+                <td>{{t.lnCoach.clnbirth}}</td>
+                <td>{{t.lnCoach.clnsex}}</td>
+
+            </tr>
+        </table>
+        当前{{pageInfo.pageNum}}/{{pageInfo.pages}}页，共{{pageInfo.total}}条记录
+        <button @click="paging(1)">首页</button>
+        <button @click="paging(pageInfo.prePage)">上一页</button>
+        <button @click="paging(pageInfo.nextPage)">下一页</button>
+        <button @click="paging(pageInfo.lastPage)">尾页</button>
+    </div>
+</body>
+<script type="text/javascript" src="../myjs/trainee_list.js"></script>
+</html>
